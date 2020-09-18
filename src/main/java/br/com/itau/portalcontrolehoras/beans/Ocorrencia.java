@@ -1,32 +1,42 @@
-package br.com.portalcontrolehoras.beans;
+package br.com.itau.portalcontrolehoras.beans;
 
-import java.sql.Time;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import java.sql.Date;
 
 @Entity
-@Table(name="tb_ocorrencia")
+@Table(name="itmn232_ocorrencia")
 public class Ocorrencia {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int num_seq;
 	
-	private int id_usuario;
-	private int id_atividade;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "itmn232_usuario", referencedColumnName = "id_usuario")
+	private Usuario usuario;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "itmn232_atividade", referencedColumnName = "id_atividade")
+	private Atividade atividade;
+	
 	@Column(name="descricao")
 	private String descricao;
 	@Column(name="data")
-	private Date data;
+	private LocalDate data;
 	@Column(name="hora")
-	private Time hora;
+	private LocalTime hora;
 	@Column(name="ponto_manual")
 	private int ponto_manual;
 	@Column(name="status")
@@ -38,12 +48,12 @@ public class Ocorrencia {
 		
 	}
 	
-	public Ocorrencia(int num_seq, int id_usuario, int id_atividade, String descricao, Date data, Time hora,
+	public Ocorrencia(int num_seq, Usuario usuario, Atividade atividade, String descricao, LocalDate data, LocalTime hora,
 			int ponto_manual, int status) {
 		super();
 		this.num_seq = num_seq;
-		this.id_usuario = id_usuario;
-		this.id_atividade = id_atividade;
+		this.usuario = usuario;
+		this.atividade = atividade;
 		this.descricao = descricao;
 		this.data = data;
 		this.hora = hora;
@@ -56,17 +66,17 @@ public class Ocorrencia {
 	public void setNum_seq(int num_seq) {
 		this.num_seq = num_seq;
 	}
-	public int getId_usuario() {
-		return id_usuario;
+	public Usuario getId_usuario() {
+		return usuario;
 	}
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setId_usuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	public int getId_atividade() {
-		return id_atividade;
+	public Atividade getId_atividade() {
+		return atividade;
 	}
-	public void setId_atividade(int id_atividade) {
-		this.id_atividade = id_atividade;
+	public void setId_atividade(Atividade atividade) {
+		this.atividade = atividade;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -74,16 +84,16 @@ public class Ocorrencia {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	public Time getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
-	public void setHora(Time hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
 	public int getPonto_manual() {

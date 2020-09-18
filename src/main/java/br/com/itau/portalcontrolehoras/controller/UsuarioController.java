@@ -1,4 +1,4 @@
-package br.com.portalcontrolehoras.controller;
+package br.com.itau.portalcontrolehoras.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.portalcontrolehoras.DAO.UsuarioDAO;
-import br.com.portalcontrolehoras.beans.Usuario;
+import br.com.itau.portalcontrolehoras.DAO.UsuarioDAO;
+import br.com.itau.portalcontrolehoras.beans.Usuario;
 
 @RestController
 public class UsuarioController {
