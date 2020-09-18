@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -23,11 +23,11 @@ public class Ocorrencia {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int num_seq;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "itmn232_usuario", referencedColumnName = "id_usuario")
 	private Usuario usuario;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "itmn232_atividade", referencedColumnName = "id_atividade")
 	private Atividade atividade;
 	
