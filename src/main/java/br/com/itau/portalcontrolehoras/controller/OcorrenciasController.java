@@ -35,6 +35,15 @@ public class OcorrenciasController {
 		return ResponseEntity.ok(resposta);
 	}
 	
+	@GetMapping("/Ocorrencia/{id}")
+	public ResponseEntity<Ocorrencia> getOcorrencia(@PathVariable int id){
+		Ocorrencia resposta = dao.findById(id).orElse(null);
+		if (resposta == null) {
+			return ResponseEntity.status(404).build();			
+		}
+		return ResponseEntity.ok(resposta);
+	}
+	
 	@GetMapping("/ListaOcorrenciasID/{id}")
 	public ResponseEntity<ArrayList<Ocorrencia>> getOcorrenciasPorUsuarioId(@PathVariable int id){
 		Usuario usuario = new Usuario();
