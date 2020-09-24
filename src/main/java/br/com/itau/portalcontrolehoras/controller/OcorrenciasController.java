@@ -56,6 +56,15 @@ public class OcorrenciasController {
 		return ResponseEntity.ok(resposta);
 	}
 	
+	@GetMapping("/ListaOcorrenciasStatus/{status}")
+	public ResponseEntity<ArrayList<Ocorrencia>> getOcorrenciasPorStatus(@PathVariable String status){				
+		ArrayList<Ocorrencia> resposta = (ArrayList<Ocorrencia>)dao.findBystatus(Integer.parseInt(status));
+		if (resposta.size() == 0) {
+			return ResponseEntity.status(404).build();			
+		}
+		return ResponseEntity.ok(resposta);
+	}
+	
 	@PostMapping("/AtualizaOcorrencia")
 	public ResponseEntity<Ocorrencia> doAtualizaOcorrencia(@RequestBody Ocorrencia ocorrencia){
 		Ocorrencia resposta = dao.save(ocorrencia);
