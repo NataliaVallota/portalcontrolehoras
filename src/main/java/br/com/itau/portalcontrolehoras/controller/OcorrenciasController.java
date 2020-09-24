@@ -65,6 +65,16 @@ public class OcorrenciasController {
 		return ResponseEntity.ok(resposta);
 	}
 	
+	@GetMapping("/ListaOcorrenciasRacfStatus/{racf}/{status}")
+	public ResponseEntity<ArrayList<Ocorrencia>> getOcorrenciasPorUsuarioStatus(@PathVariable String racf,@PathVariable String status){	
+		Usuario usuario = daoUser.findByRacf(racf);
+		ArrayList<Ocorrencia> resposta = (ArrayList<Ocorrencia>)dao.findBystatusAndUsuario(Integer.parseInt(status),usuario);
+		if (resposta.size() == 0) {
+			return ResponseEntity.status(404).build();			
+		}
+		return ResponseEntity.ok(resposta);
+	}
+	
 	@PostMapping("/AtualizaOcorrencia")
 	public ResponseEntity<Ocorrencia> doAtualizaOcorrencia(@RequestBody Ocorrencia ocorrencia){
 		Ocorrencia resposta = dao.save(ocorrencia);

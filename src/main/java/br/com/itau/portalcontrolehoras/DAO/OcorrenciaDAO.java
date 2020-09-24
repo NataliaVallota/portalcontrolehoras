@@ -11,4 +11,5 @@ public interface OcorrenciaDAO extends CrudRepository<Ocorrencia, Integer> {
 
 	ArrayList<Ocorrencia> findByUsuario(Usuario usuario);
 	ArrayList<Ocorrencia> findBystatus(int status);
+	ArrayList<Ocorrencia> findBystatusAndUsuario(int status,Usuario usuario);
 }
